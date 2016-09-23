@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WebApplication.Data;
-using WebApplication.Models;
-using WebApplication.Services;
+using GadFly.Data;
+using GadFly.Models;
+using GadFly.Core;
 
 namespace WebApplication
 {
@@ -32,6 +32,7 @@ namespace WebApplication
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+ 		
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -49,9 +50,9 @@ namespace WebApplication
 
             services.AddMvc();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+           services.AddSingleton<ChatManager,ChatManager>();
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,10 +71,11 @@ namespace WebApplication
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+	    app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseIdentity();
+	   app.UseSignalR();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
