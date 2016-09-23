@@ -23,6 +23,7 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
+    "Microsoft.AspNetCore.SignalR.Server": "0.2.0-*",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
     "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
@@ -81,6 +82,9 @@
   },
 
   "buildOptions": {
+   "compile": {
+      "exclude": [ "node_modules\\selenium-webdriver\\**\\*.cs" ]
+    },
     "debugType": "portable",
     "emitEntryPoint": true,
     "preserveCompilationContext": true
