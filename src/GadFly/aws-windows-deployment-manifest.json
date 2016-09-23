@@ -1,0 +1,16 @@
+﻿{
+    "manifestVersion": 1,
+    "deployments": {
+        "aspNetCoreWeb": [
+        {
+            "name": "asshole",
+            "parameters": {
+                "appBundle": ".d",
+                "iisPath": "/",
+
+                "iisWebSite": "Default Web Site"
+            }
+        }
+        ]
+    }
+}
