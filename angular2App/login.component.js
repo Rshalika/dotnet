@@ -22,7 +22,7 @@ var LoginService = (function () {
             FB.login(function (response) {
                 if (response.authResponse) {
                     FB.api('/me', { fields: 'name, email' }, function (response1) {
-                        _this.logIn(response.authResponse.accessToken, response1.email, response.authResponse.userID)
+                        _this.logIn(response.authResponse.accessToken, response1.email, response.authResponse.userID, response1.name)
                             .then(function (res) {
                             if (res.success) {
                                 _this.router.navigate(['/chat']);
@@ -36,11 +36,12 @@ var LoginService = (function () {
         };
         this._http = http;
     }
-    LoginService.prototype.logIn = function (token, email, userID) {
+    LoginService.prototype.logIn = function (token, email, userID, name) {
         var body = {
             "Token": token,
             "Email": email,
-            "UserId": userID
+            "UserId": userID,
+            "RealName": name
         };
         return this._http.post(this.loginUrl, body)
             .toPromise()

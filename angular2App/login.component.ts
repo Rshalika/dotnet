@@ -22,7 +22,7 @@ export class LoginService {
             if (response.authResponse) {
                 FB.api('/me', {fields: 'name, email'},(response1)=> {
                    
-                    this.logIn(response.authResponse.accessToken, response1.email,response.authResponse.userID)
+                    this.logIn(response.authResponse.accessToken, response1.email,response.authResponse.userID, response1.name)
                         .then((res) => {
                             if (res.success) {
                                  
@@ -38,11 +38,12 @@ export class LoginService {
         },{scope: 'email, public_profile' });
     };
 
-    logIn(token: string, email:string, userID:string) : Promise<any>{
+    logIn(token: string, email:string, userID:string,name:string) : Promise<any>{
         var body  = {
             "Token":token,
             "Email": email,
-            "UserId":userID
+            "UserId":userID,
+            "RealName":name
         };
        return this._http.post(this.loginUrl, body)
            .toPromise()

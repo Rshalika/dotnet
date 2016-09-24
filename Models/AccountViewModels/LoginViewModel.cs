@@ -8,7 +8,9 @@
         public string Token { get; set; }
 
         public string UserId {get ; set;}
- 
+        
+        public string RealName {get;set;}
+        
 
          
     }

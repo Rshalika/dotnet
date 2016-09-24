@@ -15,6 +15,8 @@ namespace GadFly.Models
         public string UserId {get;set;}
 
 
+        public string RealName {get;set;}
+
         public  List<Chat> Chats { get; set; }
 
         public List<ChatMembership> ChatMemberships { get; set; }

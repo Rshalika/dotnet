@@ -8,7 +8,7 @@ using GadFly.Data;
 namespace dotnet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160924222356_initial")]
+    [Migration("20160924231801_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,8 @@ namespace dotnet.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("RealName");
 
                     b.Property<string>("SecurityStamp");
 
