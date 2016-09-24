@@ -121,7 +121,7 @@ export class ChatMessaging implements OnInit,  AfterViewChecked{
             this.zone.run(() => {
                 this.myNum = params["myNum"];
                 this.chatId = params['id']; // (+) converts string 'id' to a number
-                console.log('params sub');
+                 
                 if (typeof (this.subOld) != 'undefined') {
                     this.subOld.unsubscribe();
                 }
@@ -135,7 +135,7 @@ export class ChatMessaging implements OnInit,  AfterViewChecked{
                     }
                     this.subStart = this.chatSocketService.starting$.subscribe(res => {
                         if (res) {
-                            console.log('started');
+                          
                             this.oldMessages();
                         }
                     });
@@ -168,7 +168,7 @@ export class ChatMessaging implements OnInit,  AfterViewChecked{
                     this.chatMessages.pop();
                 }
                 for (let evt of evts) {
-                    console.log(evt.Name);
+                    
                     this.chatMessages.push(new ChatMessage(evt.Data, evt.Name, evt.ChannelName,evt.IdInChat.toString()));
                 };
                 this.scroll();
@@ -179,7 +179,7 @@ export class ChatMessaging implements OnInit,  AfterViewChecked{
     }
 
     ngOnDestroy() {
-        console.log('ondestroy');
+      
         this.sub.unsubscribe();
         if (typeof (this.subOld) != 'undefined') {
             this.subOld.unsubscribe();

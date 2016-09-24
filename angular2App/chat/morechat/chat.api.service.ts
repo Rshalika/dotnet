@@ -1,5 +1,5 @@
 ﻿import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs/RX';
+import {Observable, Subject} from 'rxjs/Rx';
 import {Headers, RequestOptions, Http} from "@angular/http";
 import {ChatCreationResponse } from "../chat";
 

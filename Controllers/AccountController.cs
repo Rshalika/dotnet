@@ -36,7 +36,7 @@ namespace GadFly.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null)
                 {
-                    user = new ApplicationUser() {Email = model.Email, UserName = model.Email};
+                    user = new ApplicationUser() {Email = model.Email, UserName = model.Email, UserId = model.UserId};
                     await _userManager.CreateAsync(user);
                     user = await _userManager.FindByEmailAsync(user.Email);
 

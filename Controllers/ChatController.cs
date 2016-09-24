@@ -91,6 +91,13 @@ namespace GadFly.Controllers
             return Ok(res);
         }
         
+        [AllowAnonymous]
+        [HttpGet("bd111111")]
+        public List<ApplicationUser> Bd111111( )
+        {
+            return _context.Users.ToList();
+        }
+        
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)

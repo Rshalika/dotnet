@@ -28,7 +28,6 @@ var ChatMessaging = (function () {
             _this.zone.run(function () {
                 _this.myNum = params["myNum"];
                 _this.chatId = params['id'];
-                console.log('params sub');
                 if (typeof (_this.subOld) != 'undefined') {
                     _this.subOld.unsubscribe();
                 }
@@ -42,7 +41,6 @@ var ChatMessaging = (function () {
                     }
                     _this.subStart = _this.chatSocketService.starting$.subscribe(function (res) {
                         if (res) {
-                            console.log('started');
                             _this.oldMessages();
                         }
                     });
@@ -70,7 +68,6 @@ var ChatMessaging = (function () {
                 }
                 for (var _i = 0, evts_1 = evts; _i < evts_1.length; _i++) {
                     var evt = evts_1[_i];
-                    console.log(evt.Name);
                     _this.chatMessages.push(new chat_message_1.ChatMessage(evt.Data, evt.Name, evt.ChannelName, evt.IdInChat.toString()));
                 }
                 ;
@@ -79,7 +76,6 @@ var ChatMessaging = (function () {
         });
     };
     ChatMessaging.prototype.ngOnDestroy = function () {
-        console.log('ondestroy');
         this.sub.unsubscribe();
         if (typeof (this.subOld) != 'undefined') {
             this.subOld.unsubscribe();

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using GadFly.Data;
 
-namespace GadFly.Migrations
+namespace dotnet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -48,6 +48,8 @@ namespace GadFly.Migrations
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserId");
 
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);

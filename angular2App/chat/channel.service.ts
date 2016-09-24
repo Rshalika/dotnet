@@ -87,11 +87,11 @@ export class ChannelService {
         this.hubConnection = $.connection.hub;
        
         this.hubProxy.client.addMessage = (channelOnject) => {
-            console.log('new message');
+            
             this.events.next(channelOnject);
         };
         this.hubProxy.client.takeOldMessages = (id: string, channelOnjects: ChannelEvent[]) => {
-            console.log(channelOnjects.length);
+             
             this.chatEvents.get(id).next(channelOnjects);
         };
 
@@ -104,8 +104,7 @@ export class ChannelService {
        
         this.hubConnection.start()
             .done(() => {
-                console.log('Now connected, connection ID=' + $.connection.hub.id);
-                this.started = true;
+                 this.started = true;
                 this.startingSubject.next(true);
                 
             })
@@ -119,8 +118,7 @@ export class ChannelService {
         if (!this.chatEvents.has(id)) {
             this.chatEvents.set(id, new Subject<ChannelEvent[]>());
         }
-        console.log('request');
-        this.hubProxy.server.giveOldMessages(id);
+         this.hubProxy.server.giveOldMessages(id);
         
     }
 

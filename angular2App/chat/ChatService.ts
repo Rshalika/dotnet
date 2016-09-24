@@ -3,7 +3,7 @@ import {Http, Response} from '@angular/http'
 import {Injectable} from '@angular/core'
 import { Chat } from "./chat";
 import {ChatMessage} from "./chat.message";
-import {Observable, Subject} from 'rxjs/RX';
+import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 @Injectable()

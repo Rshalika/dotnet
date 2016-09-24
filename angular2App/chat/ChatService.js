@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var http_1 = require('@angular/http');
 var core_1 = require('@angular/core');
-var RX_1 = require('rxjs/RX');
+var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/map');
 var ChatService = (function () {
     function ChatService(http) {
@@ -25,7 +25,7 @@ var ChatService = (function () {
         var errMsg = (error.message) ? error.message :
             error.status ? error.status + " - " + error.statusText : 'Server error';
         console.error(errMsg);
-        return RX_1.Observable.throw(errMsg);
+        return Rx_1.Observable.throw(errMsg);
     };
     ChatService = __decorate([
         core_1.Injectable(), 

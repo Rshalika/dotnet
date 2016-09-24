@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var RX_1 = require('rxjs/RX');
+var Rx_1 = require('rxjs/Rx');
 var http_1 = require("@angular/http");
 var ChatApiService = (function () {
     function ChatApiService(http) {
         this.http = http;
         this.chatApiUrl = 'api/chat';
-        this.innerUpdate = new RX_1.Subject();
+        this.innerUpdate = new Rx_1.Subject();
         this.update = this.innerUpdate.asObservable();
     }
     ChatApiService.prototype.createNewChat = function (name, userName) {

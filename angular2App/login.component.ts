@@ -20,31 +20,29 @@ export class LoginService {
     onLoginFb = function () {
         FB.login((response) => {
             if (response.authResponse) {
-                console.log('Welcome!  Fetching your information.... ');
-                console.log(response);
-                console.log(response.accessToken);
                 FB.api('/me', {fields: 'name, email'},(response1)=> {
-                    console.log(response1);
-                    this.logIn(response.authResponse.accessToken, response1.email)
+                   
+                    this.logIn(response.authResponse.accessToken, response1.email,response.authResponse.userID)
                         .then((res) => {
                             if (res.success) {
-                                console.log('logged in');
+                                 
                                 this.router.navigate(['/chat']);
                             }
-                            console.log('bad in');
+                            
                         });
                 });
                
             } else {
-                console.log('User cancelled login or did not fully authorize.');
+                
             }
         },{scope: 'email, public_profile' });
     };
 
-    logIn(token: string, email:string) : Promise<any>{
+    logIn(token: string, email:string, userID:string) : Promise<any>{
         var body  = {
             "Token":token,
-            "Email": email
+            "Email": email,
+            "UserId":userID
         };
        return this._http.post(this.loginUrl, body)
            .toPromise()
@@ -56,7 +54,7 @@ export class LoginService {
 
 
     private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
+        
         return Promise.reject(error.message || error);
     }
 

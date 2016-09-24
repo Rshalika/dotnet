@@ -2,7 +2,7 @@ import {Component, OnInit, NgZone} from '@angular/core'
 import {Router} from '@angular/router'
 import {ChatService} from "./ChatService";
 import {Chat} from "./chat";
-import {Observable} from 'rxjs/RX';
+import {Observable} from 'rxjs/Rx';
 import {ChatApiService} from "./morechat/chat.api.service";
 
 @Component({

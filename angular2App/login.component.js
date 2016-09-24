@@ -21,32 +21,26 @@ var LoginService = (function () {
             var _this = this;
             FB.login(function (response) {
                 if (response.authResponse) {
-                    console.log('Welcome!  Fetching your information.... ');
-                    console.log(response);
-                    console.log(response.accessToken);
                     FB.api('/me', { fields: 'name, email' }, function (response1) {
-                        console.log(response1);
-                        _this.logIn(response.authResponse.accessToken, response1.email)
+                        _this.logIn(response.authResponse.accessToken, response1.email, response.authResponse.userID)
                             .then(function (res) {
                             if (res.success) {
-                                console.log('logged in');
                                 _this.router.navigate(['/chat']);
                             }
-                            console.log('bad in');
                         });
                     });
                 }
                 else {
-                    console.log('User cancelled login or did not fully authorize.');
                 }
             }, { scope: 'email, public_profile' });
         };
         this._http = http;
     }
-    LoginService.prototype.logIn = function (token, email) {
+    LoginService.prototype.logIn = function (token, email, userID) {
         var body = {
             "Token": token,
-            "Email": email
+            "Email": email,
+            "UserId": userID
         };
         return this._http.post(this.loginUrl, body)
             .toPromise()
@@ -54,7 +48,6 @@ var LoginService = (function () {
             .catch(this.handleError);
     };
     LoginService.prototype.handleError = function (error) {
-        console.error('An error occurred', error);
         return Promise.reject(error.message || error);
     };
     LoginService = __decorate([

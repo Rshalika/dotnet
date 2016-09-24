@@ -46,11 +46,9 @@ var ChannelService = (function () {
         this.hubProxy = $.connection.chatHub;
         this.hubConnection = $.connection.hub;
         this.hubProxy.client.addMessage = function (channelOnject) {
-            console.log('new message');
             _this.events.next(channelOnject);
         };
         this.hubProxy.client.takeOldMessages = function (id, channelOnjects) {
-            console.log(channelOnjects.length);
             _this.chatEvents.get(id).next(channelOnjects);
         };
     }
@@ -58,7 +56,6 @@ var ChannelService = (function () {
         var _this = this;
         this.hubConnection.start()
             .done(function () {
-            console.log('Now connected, connection ID=' + $.connection.hub.id);
             _this.started = true;
             _this.startingSubject.next(true);
         })
@@ -70,7 +67,6 @@ var ChannelService = (function () {
         if (!this.chatEvents.has(id)) {
             this.chatEvents.set(id, new Subject_1.Subject());
         }
-        console.log('request');
         this.hubProxy.server.giveOldMessages(id);
     };
     ChannelService.prototype.subOlds = function (id) {
